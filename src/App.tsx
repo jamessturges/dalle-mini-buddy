@@ -26,11 +26,10 @@ function App() {
         <h2>Auto-retries! No more traffic issues!</h2>
       </header>
 
-      <body>
+      <body className="Body">
         <form className="Prompt">
-          Enter a prompt:
-          <input className="prompt" onChange={e => setPrompt(e.target.value)} />
-          <button className="submit" onClick={handleSubmit} disabled={loading || prompt === ""}>Generate Images</button>
+          <input placeholder="Enter something cool" onChange={e => setPrompt(e.target.value)} />
+          <button onClick={handleSubmit} disabled={loading || prompt === ""}>Generate</button>
         </form>
 
         {loading && 
@@ -42,7 +41,7 @@ function App() {
 
         {imageStrings.length > 0 &&
         <div className='Images' >
-          {imageStrings.map((imageString, index) => <img src={"data:image/png;base64, " + imageString} alt={index.toString()}/>)}
+          {imageStrings.map((imageString, index) =>  <img className='Image' src={"data:image/png;base64, " + imageString} alt={index.toString()}/>)}
         </div>}
       </body>
 

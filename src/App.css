@@ -5,21 +5,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  justify-content: flex-start;
 }
 
 .Header {
  top: 0;
- position: absolute;
+}
+
+.Body {
+  justify-items: center;
 }
 
 .Prompt {
   display: flex;
   flex-direction: row;
-  gap: .5em;
-  justify-content: center;
+  flex-grow: 1;
+  gap: .5ch;
 }
 
 .Images {
@@ -27,12 +30,17 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: .5em
+  border: 1ch;
+}
+
+.Image {
+  width: 100%;
+  height: auto;
 }
 
 .Footer {
+  margin-top: auto;
   padding-top: 3em;
+  position: relative;
   bottom: 0;
-  font-size: 10px;
-  position: absolute;
 }
