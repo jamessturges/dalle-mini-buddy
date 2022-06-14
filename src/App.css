@@ -21,7 +21,7 @@
 .Prompt {
   display: flex;
   flex-direction: row;
-  flex-grow: 1;
+  justify-content: center;
   gap: .5ch;
 }
 
