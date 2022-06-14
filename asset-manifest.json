@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/dalle-mini-buddy/static/css/main.ede9eb0e.css",
+    "main.js": "/dalle-mini-buddy/static/js/main.3d3a5b3b.js",
+    "static/js/787.fd4eaff7.chunk.js": "/dalle-mini-buddy/static/js/787.fd4eaff7.chunk.js",
+    "static/media/spinner.svg": "/dalle-mini-buddy/static/media/spinner.9f96565982ff6d16e623becbcefb6445.svg",
+    "index.html": "/dalle-mini-buddy/index.html",
+    "main.ede9eb0e.css.map": "/dalle-mini-buddy/static/css/main.ede9eb0e.css.map",
+    "main.3d3a5b3b.js.map": "/dalle-mini-buddy/static/js/main.3d3a5b3b.js.map",
+    "787.fd4eaff7.chunk.js.map": "/dalle-mini-buddy/static/js/787.fd4eaff7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ede9eb0e.css",
+    "static/js/main.3d3a5b3b.js"
+  ]
+}
