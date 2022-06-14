@@ -76,5 +76,5 @@ export function useDallEMini(): [(prompt: string) => void, string[], boolean, nu
             }
       }
 
-      return [getDallEMiniImages, imageStrings, loading, attempts]
+      return [getDallEMiniImages, imageStrings, loading, attempts];
 }

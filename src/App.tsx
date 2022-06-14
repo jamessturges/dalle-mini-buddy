@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import spinner from './spinner.svg'
 import './App.css';
@@ -6,15 +6,26 @@ import { useDallEMini } from './use-dall-e-mini';
 
 function App() {
 
-  const [prompt, setPrompt] = useState("")
-  const [getDallEMiniImages, imageStrings, loading, attempts] = useDallEMini()
+  const [prompt, setPrompt] = useState("");
+  const [getDallEMiniImages, imageStrings, loading, attempts] = useDallEMini();
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setElapsedSeconds((elapsedSeconds) => elapsedSeconds + 1), 1000);
+    return () => {
+      clearInterval(id);
+    };
+
+  }, []);
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
 
     event.preventDefault();
 
     if(prompt !== "") {
+      setElapsedSeconds(0);
       getDallEMiniImages(prompt);
+
     }
   }
 
@@ -36,7 +47,8 @@ function App() {
         <>
           <img src={spinner} alt="Loading ..." />
           <br />
-          Attempts: {attempts}
+          Attempts: {attempts}<br />
+          Elapsed Time: {fmtMSS(elapsedSeconds)}
         </>}
 
         {imageStrings.length > 0 &&
@@ -52,5 +64,8 @@ function App() {
     </div>
   );
 }
+
+//https://stackoverflow.com/a/37770048
+function fmtMSS(s: number){return(s-(s%=60))/60+(9<s?':':':0')+s}
 
 export default App;
