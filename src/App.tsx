@@ -37,7 +37,7 @@ function App() {
         <h2>Auto-retries! No more traffic issues!</h2>
       </header>
 
-      <body className="Body">
+      <div className="Body">
         <form className="Prompt">
           <input placeholder="Enter something cool" onChange={e => setPrompt(e.target.value)} />
           <button onClick={handleSubmit} disabled={loading || prompt === ""}>Generate</button>
@@ -55,7 +55,7 @@ function App() {
         <div className='Images' >
           {imageStrings.map((imageString, index) =>  <img className='Image' src={"data:image/png;base64, " + imageString} alt={index.toString()}/>)}
         </div>}
-      </body>
+      </div>
 
       <footer className='Footer'>
         <a href="https://huggingface.co/spaces/dalle-mini/dalle-mini" target="_blank" rel="noreferrer noopener">Original DALL-E Mini website</a><br />
