@@ -39,7 +39,7 @@ function App() {
 
       <div className="Body">
         <form className="Prompt">
-          <input placeholder="Enter something cool" onChange={e => setPrompt(e.target.value)} />
+          <input className="PromptBox" placeholder="Enter something cool" onChange={e => setPrompt(e.target.value)} />
           <button onClick={handleSubmit} disabled={loading || prompt === ""}>Generate</button>
         </form>
 
