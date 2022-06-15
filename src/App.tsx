@@ -53,7 +53,7 @@ function App() {
 
         {imageStrings.length > 0 &&
         <div className='Images' >
-          {imageStrings.map((imageString, index) =>  <img className='Image' src={"data:image/png;base64, " + imageString} alt={index.toString()}/>)}
+          {imageStrings.map((imageString, index) =>  <img key={index} className='Image' src={"data:image/png;base64, " + imageString} alt={index.toString()}/>)}
         </div>}
       </div>
 
