@@ -121,7 +121,7 @@ const ImageSetContainer: FunctionComponent<ImageSetContainerProps> = ({id, decod
       <div className="ImageSetContainerLabel">
         {decode} 
         <div className="ImageSetContainerLabelChevron">
-          {<span className={isExpanded ? "chevron top" : "chevron bottom"} />}
+          {isExpanded ? "🔼" : "🔽"}
         </div>
       </div>
 
