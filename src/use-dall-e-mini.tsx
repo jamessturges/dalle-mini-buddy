@@ -1,3 +1,4 @@
+import { randomInt } from "crypto";
 import { useState } from "react";
 
 export function useDallEMini(): [(prompt: string) => void, string[], boolean, number] {
@@ -34,7 +35,8 @@ export function useDallEMini(): [(prompt: string) => void, string[], boolean, nu
             } 
             else {
                 setAttempts(tryingCount);
-                await sleep(3000);
+                const waitTime = (5 + (Math.random() * 3)) * 1000; //random time between 5 and 8 seconds. Avoids 429 rerrors
+                await sleep(waitTime);
             }
 
             tryingCount++;
@@ -72,7 +74,7 @@ export function useDallEMini(): [(prompt: string) => void, string[], boolean, nu
 
         }
             catch (e) {
-                console.log("error: " + e)
+                //No need for a catch, sometimes the API errors
             }
       }
 

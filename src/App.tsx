@@ -8,7 +8,7 @@ import { FunctionComponent} from 'react';
 
 
 type ImageSet = {
-  id: string,
+  created: Date,
   decode: string,
   data: string[]
 }
@@ -31,11 +31,8 @@ function App() {
   useEffect(() => {
     if(imageStrings.length > 0) {
 
-      const imageSet: ImageSet = {id: new Date().toString(), decode: prompt, data: imageStrings}
+      const imageSet: ImageSet = {created: new Date(), decode: prompt, data: imageStrings}
       imageSets.push(imageSet);
-      console.log(imageSets.length);
-      console.log(imageSet);
-      console.log(imageSets);
 
       localStorage.setItem("ImageSetList", JSON.stringify(imageSets));
     }
@@ -66,7 +63,7 @@ function App() {
   return (
     <div className="App">
       <header className="Header">
-        <h1>DALL-E Mini Buddy</h1>
+        <h1>DALL-E mini Buddy</h1>
         <h2>Auto-retries! No more traffic issues!</h2>
       </header>
 
@@ -96,7 +93,7 @@ function App() {
 
       <footer className='Footer'>
         <button onClick={handleClickDeleteImages}>Delete Saved Images</button><br/>
-        <a href="https://huggingface.co/spaces/dalle-mini/dalle-mini" target="_blank" rel="noreferrer noopener">Original DALL-E Mini website</a><br />
+        <a href="https://huggingface.co/spaces/dalle-mini/dalle-mini" target="_blank" rel="noreferrer noopener">Original DALL-E mini website</a><br />
         If this is causing trouble, <a href="mailto:jamessturgesiii@gmail.com">email me</a>
       </footer>
     </div>
@@ -106,25 +103,27 @@ function App() {
 //https://stackoverflow.com/a/37770048
 function fmtMSS(s: number){return(s-(s%=60))/60+(9<s?':':':0')+s};
 
-
 interface ImageSetContainerProps {
-  id: string,
-  decode: string,
-  data: string[]
+  imageSet: ImageSet
 };
 
-const ImageSetContainer: FunctionComponent<ImageSetContainerProps> = ({id, decode, data}) => {
+const ImageSetContainer: FunctionComponent<ImageSetContainerProps> = ({imageSet}) => {
   const {getCollapseProps, getToggleProps, isExpanded} = useCollapse()
 
   return (
-    <div key={id} className="ImageSetContainer" {...getToggleProps()}>
+    <div key={imageSet.created.toString()} className="ImageSetContainer" {...getToggleProps()}>
       <div className="ImageSetContainerLabel">
-        {decode} 
+        {imageSet.decode} 
       </div>
 
       <div {...getCollapseProps()} >
         <div className='Images'>
-          {data.map((imageData, index) => <img key={index} className="Image" alt={decode} src={"data:image/png;base64, " + imageData}/>)}
+          {imageSet.data.map((imageData, index) => {
+            return(<img key={index} 
+                        className="Image" 
+                        alt={imageSet.decode} 
+                        src={"data:image/png;base64, " + imageData}/>)
+          })}
         </div>
       </div>
     </div>
@@ -138,25 +137,29 @@ interface ImageSetListProps {
 
 const ImageSetList: FunctionComponent<ImageSetListProps> = ({imageSets, setImageSets}) => {
 
-  let imageSetList = "";
-
   useEffect(() => {
     let imageSetListData = localStorage.getItem("ImageSetList");
     if(imageSetListData) {
-      console.log(imageSetList);
-      setImageSets(JSON.parse(imageSetListData));
+      const imageSets = JSON.parse(imageSetListData);
+      removeOldData(imageSets);
+      setImageSets(imageSets);
     }
 
   }, [])
 
   return (
     <div>
-      {imageSets && imageSets.map(imageSet => {
-        return(<ImageSetContainer id={imageSet.id} decode={imageSet.decode} data={imageSet.data} />)
-      })}
+      {imageSets && imageSets.sort((a, b) => a.created > b.created ? -1 : 1)
+                              .map(imageSet => <ImageSetContainer imageSet={imageSet} />)}
     </div>
   )
-};
 
+      };
+
+  const removeOldData = (imageSetList: ImageSet[]) => {
+    if(imageSetList.some(imageSet => imageSet.hasOwnProperty("id"))) {
+      localStorage.removeItem("ImageSetList");
+    }
+  }
 
 export default App;
