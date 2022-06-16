@@ -120,9 +120,6 @@ const ImageSetContainer: FunctionComponent<ImageSetContainerProps> = ({id, decod
     <div key={id} className="ImageSetContainer" {...getToggleProps()}>
       <div className="ImageSetContainerLabel">
         {decode} 
-        <div className="ImageSetContainerLabelChevron">
-          {isExpanded ? "🔼" : "🔽"}
-        </div>
       </div>
 
       <div {...getCollapseProps()} >

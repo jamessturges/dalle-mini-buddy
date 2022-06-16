@@ -23,7 +23,7 @@
     "deploy": "npm run add-domain && gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "add-domain": "echo \"dallebuddy.sturges.dev\" > build/CNAME",
+    "add-domain": "echo dalleminibuddy.sturges.dev > build/CNAME",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
