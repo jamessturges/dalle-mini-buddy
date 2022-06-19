@@ -73,9 +73,10 @@ export function useDallEMini(): [(prompt: string) => void, string[], boolean, nu
             }
 
         }
-            catch (e) {
-                //No need for a catch, sometimes the API errors
-            }
+
+        catch (e) {
+            //No need for a catch, sometimes the API errors
+        }
       }
 
       return [getDallEMiniImages, imageStrings, loading, attempts];
