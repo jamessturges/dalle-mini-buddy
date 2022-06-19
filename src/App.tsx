@@ -77,7 +77,7 @@ function App() {
           Attempts: {attempts}<br />
           Elapsed Time: {fmtMSS(elapsedSeconds)}
           {elapsedSeconds > 60 && <><br/>This may take a while ...<br/></>}
-          {elapsedSeconds > 120 && <>Still running, I promsise <br/></>}
+          {elapsedSeconds > 120 && <>Still running, I promise <br/></>}
           {elapsedSeconds > 180 && <>You're really patient!<br/></>}
           {elapsedSeconds > 240 && <>Loading loading loading<br/></>}
         </> 
