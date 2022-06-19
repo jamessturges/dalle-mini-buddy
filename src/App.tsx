@@ -47,11 +47,10 @@ function App() {
     }
   }
 
-
   const handleClickDeleteImages = (event: React.MouseEvent<HTMLButtonElement>) => {
 
     event.preventDefault();
-    
+
     if(window.confirm("Are you sure you want to delete your images?")) {
       localStorage.removeItem("ImageSetList");
       setImageSets([]);
@@ -77,6 +76,10 @@ function App() {
           <br />
           Attempts: {attempts}<br />
           Elapsed Time: {fmtMSS(elapsedSeconds)}
+          {elapsedSeconds > 60 && <><br/>This may take a while ...<br/></>}
+          {elapsedSeconds > 120 && <>Still running, I promsise <br/></>}
+          {elapsedSeconds > 180 && <>You're really patient!<br/></>}
+          {elapsedSeconds > 240 && <>Loading loading loading<br/></>}
         </> 
         : 
         <>
